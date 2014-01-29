@@ -15,7 +15,6 @@ import android.widget.ArrayAdapter;
 import android.widget.GridView;
 
 public class MainActivity extends Activity {
-  private MyAdapter mAdapter;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +42,9 @@ public class MainActivity extends Activity {
     return true;
   }
 
-  public class MainFragment extends Fragment {
+  public static class MainFragment extends Fragment {
+    private MyAdapter mAdapter;
+
     public MainFragment() {
       super();
     }
@@ -63,29 +64,25 @@ public class MainActivity extends Activity {
     }
   }
 
-  private class MyAdapter extends ArrayAdapter<String> implements AdapterView.OnItemClickListener {
+  private static class MyAdapter extends ArrayAdapter<String> implements AdapterView.OnItemClickListener {
     Context mContext;
 
     public MyAdapter(Context context, int resource) {
       super(context, resource);
 
+      mContext = context;
 
       for (int i = 0; i < 20; i++)
         add(Integer.toString(i + 1));
-    }
-
-    private void duh() {
-
-
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View v, int position, long row) {
       Intent intent = new Intent();
       intent.putExtra("index", position + 1);
-      intent.setClass(MainActivity.this, WebActivity.class);
-      startActivity(intent);
+      intent.setClass(mContext, WebActivity.class);
 
+      mContext.startActivity(intent);
     }
 
   }
