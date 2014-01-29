@@ -5,7 +5,7 @@
 
     </style>
 
-    <style name="FullScreenTheme" parent="android:Theme.Holo.Light.NoActionBar">
+    <style name="FullScreenTheme" parent="android:Theme.Holo.Light.NoActionBar.Fullscreen">
     </style>
 
     <style name="ActionBarStyle" parent="android:Widget.Holo.Light.ActionBar.Solid.Inverse">

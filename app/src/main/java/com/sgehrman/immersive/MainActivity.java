@@ -73,7 +73,7 @@ public class MainActivity extends Activity {
       mContext = context;
 
       for (int i = 0; i < 20; i++)
-        add(Integer.toString(i + 1));
+        add("Puzzle\n" + Integer.toString(i + 1));
     }
 
     @Override

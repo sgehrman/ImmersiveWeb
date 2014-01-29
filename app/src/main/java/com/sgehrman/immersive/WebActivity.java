@@ -2,6 +2,7 @@ package com.sgehrman.immersive;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
@@ -30,8 +31,11 @@ public class WebActivity extends Activity {
   @Override
   public void onResume() {
     super.onResume();
+boolean kitkat = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT);
+    int newUiOptions=0;
 
-    int newUiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
+    if (kitkat){
+      newUiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
         View.SYSTEM_UI_FLAG_FULLSCREEN |
         View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY |
 //        View.SYSTEM_UI_FLAG_IMMERSIVE |
@@ -39,6 +43,12 @@ public class WebActivity extends Activity {
 //        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
 
         0;
+    } else {
+      newUiOptions = View.SYSTEM_UI_FLAG_LOW_PROFILE |
+
+          0;
+
+    }
 
     getWindow().getDecorView().setSystemUiVisibility(newUiOptions);
   }
